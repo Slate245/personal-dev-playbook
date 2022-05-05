@@ -1,0 +1,49 @@
+---
+- name: Setup Brave repo
+  become: true
+  ansible.builtin.yum_repository:
+    name: "brave-browser-rpm-release.s3.brave.com_x86_64_"
+    description: "Brave Browser"
+    baseurl: "https://brave-browser-rpm-release.s3.brave.com/x86_64/"
+    enabled: yes
+    state: present
+- name: Setup repos with gpg check
+  become: true
+  ansible.builtin.yum_repository:
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    baseurl: "{{ item.baseurl }}"
+    gpgcheck: yes
+    gpgkey: "{{ item.gpgkey }}"
+    repo_gpgcheck: "{{ item.repo_gpgcheck }}"
+    enabled: yes
+    state: present
+  loop:
+    - {
+        name: "vscode",
+        description: "Visual Studio Code",
+        baseurl: "https://packages.microsoft.com/yumrepos/vscode",
+        gpgkey: "https://packages.microsoft.com/keys/microsoft.asc",
+        repo_gpgcheck: no,
+      }
+    - {
+        name: "docker-ce-stable",
+        description: "Docker CE Stable - $basearch",
+        baseurl: "https://download.docker.com/linux/fedora/$releasever/$basearch/stable",
+        gpgkey: "https://download.docker.com/linux/fedora/gpg",
+        repo_gpgcheck: no,
+      }
+    - {
+        name: "protonvpn-fedora-stable",
+        description: "ProtonVPN Fedora Stable repository",
+        baseurl: "https://repo.protonvpn.com/fedora-$releasever-stable",
+        gpgkey: "https://repo.protonvpn.com/fedora-$releasever-stable/public_key.asc",
+        repo_gpgcheck: yes,
+      }
+    - {
+        name: "teamviewer",
+        description: "TeamViewer - $basearch",
+        baseurl: "https://linux.teamviewer.com/yum/stable/main/binary-$basearch/",
+        gpgkey: "https://linux.teamviewer.com/pubkey/currentkey.asc",
+        repo_gpgcheck: yes,
+      }

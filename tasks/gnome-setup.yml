@@ -1,0 +1,159 @@
+---
+- name: Turn on a11y indicator
+  community.general.dconf:
+    key: "/org/gnome/desktop/a11y/always-show-universal-access-status"
+    value: "true"
+- name: Configure app folders
+  community.general.dconf:
+    key: "/org/gnome/desktop/app-folders/folder-children"
+    value: "['Utilities', '018741e6-f417-4fc0-a3c8-fdd2bac92f50', 'c101d913-1235-45fc-ad04-5b255246be9f', 'dc42ffd9-9b63-4be0-bbf5-0609a67434ae', '9858a51a-98ea-4a82-8ae7-e751a7a7e414', 'db91f709-6a1d-448d-836a-22c46e3eda16']"
+- name: Configure Office folder
+  community.general.dconf:
+    key: "{{ item.key | string }}"
+    value: "{{ item.value | string }}"
+  loop:
+    - {
+        key: "/org/gnome/desktop/app-folders/folders/018741e6-f417-4fc0-a3c8-fdd2bac92f50/apps",
+        value: "['libreoffice-writer.desktop', 'libreoffice-calc.desktop', 'libreoffice-impress.desktop']",
+      }
+    - {
+        key: "/org/gnome/desktop/app-folders/folders/018741e6-f417-4fc0-a3c8-fdd2bac92f50/name",
+        value: "'Офис'",
+      }
+- name: Configure Internet folder
+  community.general.dconf:
+    key: "{{ item.key | string }}"
+    value: "{{ item.value | string }}"
+  loop:
+    - {
+        key: "/org/gnome/desktop/app-folders/folders/9858a51a-98ea-4a82-8ae7-e751a7a7e414/apps",
+        value: "['firefox.desktop', 'brave-browser.desktop', 'com.github.micahflee.torbrowser-launcher.desktop', 'com.github.micahflee.torbrowser-launcher.settings.desktop']",
+      }
+    - {
+        key: "/org/gnome/desktop/app-folders/folders/9858a51a-98ea-4a82-8ae7-e751a7a7e414/name",
+        value: "'Интернет'",
+      }
+- name: Configure Utilities folder
+  community.general.dconf:
+    key: "{{ item.key | string }}"
+    value: "{{ item.value | string }}"
+  loop:
+    - {
+        key: "/org/gnome/desktop/app-folders/folders/Utilities/apps",
+        value: "['gnome-abrt.desktop', 'gnome-system-log.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.eog.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'vinagre.desktop', 'ca.desrt.dconf-editor.desktop', 'org.gnome.Extensions.desktop', 'gnome-system-monitor.desktop']",
+      }
+    - {
+        key: "/org/gnome/desktop/app-folders/folders/Utilities/categories",
+        value: "['X-GNOME-Utilities']",
+      }
+    - {
+        key: "/org/gnome/desktop/app-folders/folders/Utilities/name",
+        value: "'X-GNOME-Utilities.directory'",
+      }
+    - {
+        key: "/org/gnome/desktop/app-folders/folders/Utilities/translate",
+        value: "true",
+      }
+- name: Configure Communication folder
+  community.general.dconf:
+    key: "{{ item.key | string }}"
+    value: "{{ item.value | string }}"
+  loop:
+    - {
+        key: "/org/gnome/desktop/app-folders/folders/c101d913-1235-45fc-ad04-5b255246be9f/apps",
+        value: "['com.slack.Slack.desktop', 'org.telegram.desktop.desktop', 'com.skype.Client.desktop', 'com.discordapp.Discord.desktop']",
+      }
+    - {
+        key: "/org/gnome/desktop/app-folders/folders/c101d913-1235-45fc-ad04-5b255246be9f/name",
+        value: "'Общение'",
+      }
+- name: Configure Remote Access folder
+  community.general.dconf:
+    key: "{{ item.key | string }}"
+    value: "{{ item.value | string }}"
+  loop:
+    - {
+        key: "/org/gnome/desktop/app-folders/folders/db91f709-6a1d-448d-836a-22c46e3eda16/apps",
+        value: "['org.remmina.Remmina.desktop', 'com.teamviewer.TeamViewer.desktop']",
+      }
+    - {
+        key: "/org/gnome/desktop/app-folders/folders/db91f709-6a1d-448d-836a-22c46e3eda16/name",
+        value: "'Удаленный доступ'",
+      }
+- name: Configure Development folder
+  community.general.dconf:
+    key: "{{ item.key | string }}"
+    value: "{{ item.value | string }}"
+  loop:
+    - {
+        key: "/org/gnome/desktop/app-folders/folders/dc42ffd9-9b63-4be0-bbf5-0609a67434ae/apps",
+        value: "['code.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'com.getpostman.Postman.desktop', 'rest.insomnia.Insomnia.desktop', 'org.gnome.GHex.desktop']",
+      }
+    - {
+        key: "/org/gnome/desktop/app-folders/folders/dc42ffd9-9b63-4be0-bbf5-0609a67434ae/name",
+        value: "'Разработка'",
+      }
+- name: Configure input sources
+  community.general.dconf:
+    key: "{{ item.key | string }}"
+    value: "{{ item.value | string }}"
+  loop:
+    - {
+        key: "/org/gnome/desktop/input-sources/mru-sources",
+        value: "[('xkb', 'us'), ('xkb', 'ru')]",
+      }
+    - { key: "/org/gnome/desktop/input-sources/per-window", value: "false" }
+    - {
+        key: "/org/gnome/desktop/input-sources/sources",
+        value: "[('xkb', 'us'), ('xkb', 'ru')]",
+      }
+    - {
+        key: "/org/gnome/desktop/input-sources/xkb-options",
+        value: "['grp:win_space_toggle', 'lv3:ralt_switch']",
+      }
+- name: Configure files shortcut
+  community.general.dconf:
+    key: "{{ item.key | string }}"
+    value: "{{ item.value | string }}"
+  loop:
+    - {
+        key: "/org/gnome/settings-daemon/plugins/media-keys/home",
+        value: "['<Super>f']",
+      }
+- name: Configure custom shortcuts
+  community.general.dconf:
+    key: "{{ item.key | string }}"
+    value: "{{ item.value | string }}"
+  loop:
+    - {
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings",
+        value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']",
+      }
+    - {
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding",
+        value: "'<Super>Print'",
+      }
+    - {
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command",
+        value: "'flameshot gui'",
+      }
+    - {
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name",
+        value: "'Launch Flameshot'",
+      }
+    - {
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/binding",
+        value: "'<Super>t'",
+      }
+    - {
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/command",
+        value: "'gnome-terminal'",
+      }
+    - {
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/name",
+        value: "'Launch Terminal'",
+      }
+- name: Configure dash
+  community.general.dconf:
+    key: "/org/gnome/shell/favorite-apps"
+    value: "['brave-browser.desktop', 'org.telegram.desktop.desktop', 'com.slack.Slack.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'org.gnome.Terminal.desktop']"

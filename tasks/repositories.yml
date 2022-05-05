@@ -7,6 +7,11 @@
     baseurl: "https://brave-browser-rpm-release.s3.brave.com/x86_64/"
     enabled: yes
     state: present
+- name: Import Brave key
+  become: true
+  ansible.builtin.rpm_key:
+    key: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+    state: present
 - name: Setup repos with gpg check
   become: true
   ansible.builtin.yum_repository:

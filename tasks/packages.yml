@@ -1,0 +1,59 @@
+---
+- name: Remove nano-default-editor
+  become: true
+  ansible.builtin.package:
+    name: nano-default-editor
+    state: absent
+- name: Install native packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - code
+      - zsh
+      - vim-default-editor
+      - brave-browser
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - flameshot
+      - git-lfs
+      - protonvpn
+- name: Enable Flathub
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+- name: Check if Flathub is filtered
+  ansible.builtin.shell: "flatpak remotes | grep flathub | grep filtered"
+  register: flathub_filtered
+  failed_when: "flathub_filtered.rc == 2"
+  changed_when: false
+- name: Disable Flathub filtering
+  ansible.builtin.command: "{{ item }}"
+  when: flathub_filtered.stdout != ''
+  loop:
+    - flatpak remote-modify --no-filter flathub
+    - flatpak update --appstream
+- name: Install flatpaks
+  become: true
+  community.general.flatpak:
+    name:
+      - ca.desrt.dconf-editor
+      - com.bitwarden.desktop
+      - com.discordapp.Discord
+      - com.getpostman.Postman
+      - com.github.micahflee.torbrowser-launcher
+      - com.github.tchx84.Flatseal
+      - com.mattjakeman.ExtensionManager
+      - com.obsproject.Studio
+      - com.skype.Client
+      - com.slack.Slack
+      - de.haeckerfelix.Fragments
+      - io.dbeaver.DBeaverCommunity
+      - io.dbeaver.DBeaverCommunity.Client.pgsql
+      - io.github.seadve.Kooha
+      - md.obsidian.Obsidian
+      - org.gnome.DejaDup
+      - org.gnome.GHex
+      - org.telegram.desktop
+      - org.telegram.desktop.webview

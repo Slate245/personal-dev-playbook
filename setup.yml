@@ -4,4 +4,5 @@
 
   tasks:
     - ansible.builtin.import_tasks: tasks/repositories.yml
+    - ansible.builtin.import_tasks: tasks/packages.yml
     - ansible.builtin.import_tasks: tasks/gnome-setup.yml

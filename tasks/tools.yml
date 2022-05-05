@@ -1,0 +1,13 @@
+---
+- name: Change user shell to zsh
+  become: true
+  vars:
+    current_user: "{{ ansible_user_id }}"
+  ansible.builtin.user:
+    name: "{{ current_user }}"
+    shell: /bin/zsh
+- name: Install NVM
+  ansible.builtin.shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"

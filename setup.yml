@@ -69,7 +69,7 @@
           }
         - {
             key: "/org/gnome/desktop/app-folders/folders/018741e6-f417-4fc0-a3c8-fdd2bac92f50/name",
-            value: "Офис",
+            value: "'Офис'",
           }
     - name: Configure Internet folder
       community.general.dconf:
@@ -82,7 +82,7 @@
           }
         - {
             key: "/org/gnome/desktop/app-folders/folders/9858a51a-98ea-4a82-8ae7-e751a7a7e414/name",
-            value: "Интернет",
+            value: "'Интернет'",
           }
     - name: Configure Utilities folder
       community.general.dconf:
@@ -116,7 +116,7 @@
           }
         - {
             key: "/org/gnome/desktop/app-folders/folders/c101d913-1235-45fc-ad04-5b255246be9f/name",
-            value: "Общение",
+            value: "'Общение'",
           }
     - name: Configure Remote Access folder
       community.general.dconf:
@@ -129,7 +129,7 @@
           }
         - {
             key: "/org/gnome/desktop/app-folders/folders/db91f709-6a1d-448d-836a-22c46e3eda16/name",
-            value: "Удаленный доступ",
+            value: "'Удаленный доступ'",
           }
     - name: Configure Development folder
       community.general.dconf:
@@ -142,7 +142,7 @@
           }
         - {
             key: "/org/gnome/desktop/app-folders/folders/dc42ffd9-9b63-4be0-bbf5-0609a67434ae/name",
-            value: "Разработка",
+            value: "'Разработка'",
           }
     - name: Configure input sources
       community.general.dconf:
@@ -155,7 +155,7 @@
           }
         - { key: "/org/gnome/desktop/input-sources/per-window", value: "false" }
         - {
-            key: "org/gnome/desktop/input-sources/sources",
+            key: "/org/gnome/desktop/input-sources/sources",
             value: "[('xkb', 'us'), ('xkb', 'ru')]",
           }
         - {
@@ -186,11 +186,11 @@
           }
         - {
             key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command",
-            value: "flameshot gui",
+            value: "'flameshot gui'",
           }
         - {
             key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name",
-            value: "Launch Flameshot",
+            value: "'Launch Flameshot'",
           }
         - {
             key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/binding",
@@ -198,11 +198,11 @@
           }
         - {
             key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/command",
-            value: "gnome-terminal",
+            value: "'gnome-terminal'",
           }
         - {
             key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/name",
-            value: "Launch Terminal",
+            value: "'Launch Terminal'",
           }
     - name: Configure dash
       community.general.dconf:

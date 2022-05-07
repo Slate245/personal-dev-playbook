@@ -1,0 +1,34 @@
+- name: Setup Kubernetes repo
+  become: true
+  ansible.builtin.yum_repository:
+    name: "kubernetes"
+    description: "Kubernetes"
+    baseurl: "https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64"
+    enabled: yes
+    gpgcheck: yes
+    repo_gpgcheck: yes
+    gpgkey:
+      - https://packages.cloud.google.com/yum/doc/yum-key.gpg
+      - https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+    state: present
+- name: Setup Pritunl repo
+  become: true
+  ansible.builtin.yum_repository:
+    name: "pritunl"
+    description: "Pritunl Stable Repository"
+    baseurl: "https://repo.pritunl.com/stable/yum/fedora/$releasever/"
+    enabled: yes
+    gpgcheck: yes
+    state: present
+- name: Install native packages for work
+  become: true
+  ansible.builtin.package:
+    name:
+      - postgresql-server
+      - postgresql-contrib
+      - ruby
+      - dotnet-sdk-3.1
+      - dotnet-sdk-5.0
+      - dotnet-sdk-6.0
+      - kubectl
+      - pritunl-client-electron

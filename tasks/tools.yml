@@ -11,6 +11,11 @@
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
   args:
     creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+- name: Install Powerlevel10k
+  ansible.builtin.shell: >
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+  args:
+    creates: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/powerlevel10k"
 - name: Install NVM
   ansible.builtin.shell: >
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | PROFILE=/dev/null bash
@@ -18,8 +23,9 @@
     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 - name: Copy ZSH configs
   ansible.builtin.copy:
-    src: "{{ item }}"
+    src: "../files/{{ item }}"
     dest: "{{ ansible_env.HOME }}/{{ item }}"
   loop:
-    - ../files/.zshrc
-    - ../files/.zshenv
+    - .zshrc
+    - .zshenv
+    - .p10k.zsh

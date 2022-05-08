@@ -20,6 +20,21 @@
     enabled: yes
     gpgcheck: yes
     state: present
+- name: Recieve Pritunl GPG key
+  ansible.builtin.shell: |
+    gpg --quiet --keyserver hkp://keyserver.ubuntu.com --recv-keys 7568D9BB55FF9E5287D586017AE645C0CF8E292A
+    gpg --armor --export 7568D9BB55FF9E5287D586017AE645C0CF8E292A > "{{ ansible_env.HOME }}/key.txt"
+  changed_when: false
+- name: Add pritunl GPG key
+  become: true
+  ansible.builtin.rpm_key:
+    key: "{{ ansible_env.HOME}}/key.txt"
+    state: present
+- name: Remove keyfile
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/key.txt"
+    state: absent
+  changed_when: false
 - name: Install native packages for work
   become: true
   ansible.builtin.package:

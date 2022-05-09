@@ -18,6 +18,7 @@
       - flameshot
       - git-lfs
       - protonvpn
+      - teamviewer
 - name: Enable Flathub
   community.general.flatpak_remote:
     name: flathub
